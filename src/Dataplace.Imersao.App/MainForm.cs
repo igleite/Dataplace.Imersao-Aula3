@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Dataplace.Imersao.App
 {
-    public partial class MainForm : Form
+    public partial class MainForm : dpLibrary05.fMNU_Principal
     {
         public MainForm()
         {
