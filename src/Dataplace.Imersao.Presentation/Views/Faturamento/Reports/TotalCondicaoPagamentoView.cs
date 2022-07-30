@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Dataplace.Imersao.Presentation.Views
 {
-    public partial class TesteReportView : dpLibrary05.Infrastructure.UserControls.ucSymGen_ReportDialog
+    public partial class TotalCondicaoPagamentoView : dpLibrary05.Infrastructure.UserControls.ucSymGen_ReportDialog
     {
 
         private const string _name = "Totalização de Condições de Pagamento";
         private const int _itemSeg = 649;
         private const int _reportId = 1006338;
 
-        public TesteReportView()
+        public TotalCondicaoPagamentoView()
         {
             InitializeComponent();
 

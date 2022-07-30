@@ -1,4 +1,8 @@
 ﻿using Dataplace.Core;
+using Dataplace.Imersao.Core.Domain.Orcamentos.Repositories;
+using Dataplace.Imersao.Core.Domain.Produtos.Repositories;
+using Dataplace.Imersao.Core.Domain.Services;
+using Dataplace.Imersao.Core.Infra.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -35,9 +39,18 @@ namespace Dataplace.Imersao.App
 
         }
 
-        private static void ConfiguurationService(IServiceCollection serviceCollection)
+        private static void ConfiguurationService(IServiceCollection services)
         {
-            serviceCollection.AddSingleton<MainForm>();
+            services.AddSingleton<MainForm>();
+
+            // domain - services
+            services.AddScoped<IOrcamentoService, OrcamentoService>();
+
+
+            // domain - repositories
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IOrcamentoRepository, OrcamentoRepository>();
+
         }
 
 

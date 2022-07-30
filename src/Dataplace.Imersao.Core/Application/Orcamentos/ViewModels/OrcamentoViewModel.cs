@@ -16,22 +16,18 @@ namespace Dataplace.Imersao.Core.Application.Orcamentos.ViewModels
         public string DsCliente { get; set; }
         public DateTime DtOrcamento { get; set; }
         public Decimal ValotTotal { get; set; }
-        public int? DiasValidade { get; set; }
-        public DateTime? DataValidade { get; set; }
+        public int? DiasValidade { get; set; } 
         public string CdTabela { get; set; }
         public short? SqTabela { get; set; }
         public DateTime? DtFechamento { get; set; }
         public string CdVendedor { get; set; }
-        public string Usuario { get; set; }
         public string Situacao { get; set; }
-
-
-
-
+        public DateTime? DataValidade { get; set; }
         public bool IsSelected { get; set; }
 
         private IResult _result;
 
+        public string Usuario { get; set; }
 
         public bool Equals(OrcamentoViewModel other)
         {

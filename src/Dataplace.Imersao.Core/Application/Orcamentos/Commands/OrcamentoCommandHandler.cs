@@ -2,6 +2,7 @@
 using Dataplace.Core.Domain.Bus;
 using Dataplace.Core.Domain.CommandHandlers;
 using Dataplace.Core.Domain.Events;
+using Dataplace.Core.Domain.Interfaces;
 using Dataplace.Core.Domain.Interfaces.UoW;
 using Dataplace.Core.Domain.Notifications;
 using Dataplace.Imersao.Core.Application.Orcamentos.Events;
@@ -37,6 +38,7 @@ namespace Dataplace.Imersao.Core.Application.Orcamentos.Commands
         #region fields
         private readonly IOrcamentoRepository _orcamentoRepository;
         private readonly IOrcamentoService _orcamentoService;
+        private readonly IEnvironmentService _environmentService;
         #endregion
 
         #region constructor
@@ -45,10 +47,12 @@ namespace Dataplace.Imersao.Core.Application.Orcamentos.Commands
             IMediatorHandler bus,
             INotificationHandler<DomainNotification> notifications,
             IOrcamentoRepository orcamentoRepository,
-            IOrcamentoService orcamentoService) : base(uow, bus, notifications)
+            IOrcamentoService orcamentoService,
+            IEnvironmentService environmentService) : base(uow, bus, notifications)
         {
             _orcamentoRepository = orcamentoRepository;
             _orcamentoService = orcamentoService;
+            _environmentService = environmentService;
         }
 
         #endregion
@@ -254,8 +258,15 @@ namespace Dataplace.Imersao.Core.Application.Orcamentos.Commands
                 NotifyErrorValidation("notFound", "Orçamento não encontrado");
                 return false;
             }
-            orcamento.CancelarOrcamento();
 
+
+            orcamento.DefinirUsuario(new OrcamentoUsuario(_environmentService.GetUserName()));
+
+            if (!orcamento.CancelarOrcamento())
+            {
+                orcamento.Validation.Notifications.ToList().ForEach(val => NotifyErrorValidation(val.Property, val.Message));
+                return false;
+            }
 
             if (!_orcamentoRepository.AtualizarOrcamento(orcamento))
                 NotifyErrorValidation("database", "Ocoreu um problema com a persistência dos dados");
@@ -469,7 +480,7 @@ namespace Dataplace.Imersao.Core.Application.Orcamentos.Commands
 
         public OrcamentoUsuario ObterUsuarioLogado()
         {
-            return new OrcamentoUsuario("sa");
+            return new OrcamentoUsuario(_environmentService.GetUserName());
         }
         public OrcamentoVendedor ObterVendedorPadrao()
         {

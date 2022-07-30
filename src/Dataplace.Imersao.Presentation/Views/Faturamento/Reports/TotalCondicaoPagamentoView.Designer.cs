@@ -1,6 +1,6 @@
 ﻿namespace Dataplace.Imersao.Presentation.Views
 {
-    partial class TesteReportView
+    partial class TotalCondicaoPagamentoView
     {
         /// <summary> 
         /// Required designer variable.

@@ -18,7 +18,7 @@ namespace Dataplace.Imersao.App
             InitializeComponent();
 
             AddMenu(new ToolStripMenuItem("Relatório de teste", null, (object sender, EventArgs e) => {
-                Dataplace.Core.win.Views.Managers.ViewManager.ShowViewOnForm<TesteReportView>();
+                Dataplace.Core.win.Views.Managers.ViewManager.ShowViewOnForm<TotalCondicaoPagamentoView>();
             }), TipoMenuEnun.Relatorio);
 
             AddMenu(new ToolStripMenuItem("Cancelamento de orçamento em aberto", null, (object sender, EventArgs e) => {

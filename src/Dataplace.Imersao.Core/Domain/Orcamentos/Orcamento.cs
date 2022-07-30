@@ -105,13 +105,13 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
             DtFechamento = null; 
         }
 
-        public void CancelarOrcamento()
+        public bool CancelarOrcamento()
         {
-            if (Situacao == OrcamentoStatusEnum.Fechado)
-                throw new DomainException("Não é permitido cancelar orçamento fechado!");
-
-            if (Situacao == OrcamentoStatusEnum.Cancelado)
-                throw new DomainException("Orçamento já está Cancelado!");
+            Validation = new Dataplace.Core.Domain.DomainValidation.FluentValidator.Validation.ValidationContract();
+            Validation.Requires()
+                .IsTrue(this.Situacao == OrcamentoStatusEnum.Aberto, nameof(Situacao), "Somente orçamentos abertos podem ser cancelados");
+            if (!Validation.Valid)
+                return false;
 
             Situacao = OrcamentoStatusEnum.Cancelado;
             foreach (var item in Itens ?? new List<OrcamentoItem>())
@@ -119,6 +119,9 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
                 item.DefinirStiaucao(OrcamentoItemStatusEnum.Cancelado);
             }
             DtFechamento = null;
+
+
+            return true;
         }
 
         #endregion

@@ -74,9 +74,24 @@ namespace Dataplace.Imersao.Core.Application.Orcamentos.Queries
             if (request.Situacao.HasValue )
                 builder.Where("orcamento.StOrcamento = @Situacao", new { Situacao = request.Situacao.Value.ToDataValue()});
 
+            if (request.SituacaoList != null && request.SituacaoList.Count > 0)
+                builder.Where($"orcamento.StOrcamento IN ('{string.Join("','", request.SituacaoList.Select(x => x.ToDataValue()))}')");
+
+            if(request.DtInicio.HasValue && request.DtFim.HasValue)
+                builder.Where("orcamento.DtOrcamento between @DtInicio AND @DtFim ", new { DtInicio = request.DtInicio.Value, DtFim = request.DtFim.Value });
+            
+
             var cmd = new CommandDefinition(selector.RawSql, selector.Parameters, flags: CommandFlags.NoCache);
 
             return _dataAccess.Connection.Query<OrcamentoViewModel>(cmd);
+
+
+            //var text = "45";
+            var text = "45 OR 1 = 1";
+            var sql2 = $"DELETE FROM orcamento WHERE numOrcamento = {text}";
+
+            // DELETE FROM orcamento WHERE numOrcamento = 42
+            // DELETE FROM orcamento WHERE numOrcamento =   45 OR 1 = 1
         }
 
         public async Task<OrcamentoViewModel> Handle(OrcamentoRefreshQuery query, CancellationToken cancellationToken)
