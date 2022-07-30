@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dataplace.Imersao.Presentation.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,12 @@ namespace Dataplace.Imersao.App
         public MainForm()
         {
             InitializeComponent();
+
+            AddMenu(new ToolStripMenuItem("Relatório de teste", null, (object sender, EventArgs e) => {
+
+                Dataplace.Core.win.Views.Managers.ViewManager.ShowViewOnForm<TesteReportView>();
+            
+            }), TipoMenuEnun.Relatorio);
         }
     }
 }

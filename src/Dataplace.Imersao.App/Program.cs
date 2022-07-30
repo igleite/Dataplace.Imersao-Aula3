@@ -25,7 +25,7 @@ namespace Dataplace.Imersao.App
 
             var builder = Dataplace.Core.DataplaceApplication.CreateBuilder(null)
                 .UseAppName("SALESAPP")
-                .UseLayout(AppLayoutEnum.SideMenu)
+                .UseLayout(AppLayoutEnum.Basic)
                 .UseMediatR(executingAssembly);
 
             ConfiguurationService(builder.Services);
