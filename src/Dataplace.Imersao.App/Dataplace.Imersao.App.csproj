@@ -33,6 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dataplace.Core.Lib">
+      <HintPath>U:\Pack 2022.R3-S4\Install\Dataplace.Core.Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataplace.Core.win">
+      <HintPath>U:\Pack 2022.R3-S4\Install\Dataplace.Core.win.dll</HintPath>
+    </Reference>
+    <Reference Include="dp.library.05">
+      <HintPath>U:\Pack 2022.R3-S4\Install\dp.library.05.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
