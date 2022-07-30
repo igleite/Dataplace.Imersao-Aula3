@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="C1.Win.C1Command.4, Version=4.0.20183.338, Culture=neutral, PublicKeyToken=e808566f358766d8, processorArchitecture=MSIL" />
     <Reference Include="Dataplace.Core.Lib">
       <HintPath>U:\Pack 2022.R3-S4\Install\Dataplace.Core.Lib.dll</HintPath>
     </Reference>
