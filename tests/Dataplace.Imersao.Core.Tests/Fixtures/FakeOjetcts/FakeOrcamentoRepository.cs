@@ -31,6 +31,34 @@ namespace Dataplace.Imersao.Core.Tests.Fixtures.FakeOjetcts
             throw new NotImplementedException();
         }
 
-  
+        public Orcamento ObterOrcamentoComItems(string cdEmpresa, string cdFilail, int numOrcamento)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int? AdicionarItem(OrcamentoItem entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AtualizarItem(OrcamentoItem entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ExcluirItem(OrcamentoItem entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public OrcamentoItem ObterItem(string cdEmpresa, string cdFilail, int numOrcamento, int seq)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<OrcamentoItem> ObterItems(string cdEmpresa, string cdFilial, int numOrcamento)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

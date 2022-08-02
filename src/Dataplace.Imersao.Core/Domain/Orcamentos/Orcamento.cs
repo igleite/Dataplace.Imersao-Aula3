@@ -72,13 +72,13 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
 
         }
 
-        public void FecharOrcamento()
+        public bool FecharOrcamento()
         {
-            if (Situacao == OrcamentoStatusEnum.Cancelado)
-                throw new DomainException("Não é permitido fechar orçamento cancelado!");
-
-            if (Situacao == OrcamentoStatusEnum.Fechado)
-                throw new DomainException("Orçamento já está fechado!");
+            Validation = new Dataplace.Core.Domain.DomainValidation.FluentValidator.Validation.ValidationContract();
+            Validation.Requires()
+                .IsTrue(this.Situacao == OrcamentoStatusEnum.Aberto, nameof(Situacao), "Somente orçamentos abertos podem ser fechados");
+            if (!Validation.Valid)
+                return false;
 
             Situacao = OrcamentoStatusEnum.Fechado;
             foreach (var item in Itens ?? new List<OrcamentoItem>())
@@ -86,23 +86,28 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
                 item.DefinirStiaucao(OrcamentoItemStatusEnum.Fechado);
             }
             DtFechamento = DateTime.Now.Date;
+
+            return true;
         }
 
-        public void ReabrirOrcamento()
+        public bool ReabrirOrcamento()
         {
 
-            if (Situacao == OrcamentoStatusEnum.Cancelado)
-                throw new DomainException("Não é permitido reabrir orçamento cancelado!");
+            Validation = new Dataplace.Core.Domain.DomainValidation.FluentValidator.Validation.ValidationContract();
+            Validation.Requires()
+                .IsTrue(this.Situacao == OrcamentoStatusEnum.Aberto, nameof(Situacao), "Somente orçamentos fechados podem ser reabertos");
+            if (!Validation.Valid)
+                return false;
 
-            if (Situacao == OrcamentoStatusEnum.Aberto)
-                throw new DomainException("Orçamento já está Aberto!");
-
+    
             Situacao = OrcamentoStatusEnum.Aberto;
             foreach (var item in Itens ?? new List<OrcamentoItem>())
             {
                 item.DefinirStiaucao(OrcamentoItemStatusEnum.Aberto);
             }
-            DtFechamento = null; 
+            DtFechamento = null;
+
+            return true;
         }
 
         public bool CancelarOrcamento()
@@ -118,8 +123,6 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
             {
                 item.DefinirStiaucao(OrcamentoItemStatusEnum.Cancelado);
             }
-            DtFechamento = null;
-
 
             return true;
         }

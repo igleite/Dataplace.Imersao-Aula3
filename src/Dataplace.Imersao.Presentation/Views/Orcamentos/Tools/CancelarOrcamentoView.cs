@@ -24,7 +24,7 @@ using System.Windows.Forms;
 
 namespace Dataplace.Imersao.Presentation.Views
 {
-    public partial class CancelamentoOrcamentoView : dpLibrary05.Infrastructure.UserControls.ucSymGen_ToolDialog
+    public partial class CancelarOrcamentoView : dpLibrary05.Infrastructure.UserControls.ucSymGen_ToolDialog
     {
         #region fields
         private DateTime _startDate;
@@ -34,7 +34,7 @@ namespace Dataplace.Imersao.Presentation.Views
         #endregion
 
         #region constructors
-        public CancelamentoOrcamentoView()
+        public CancelarOrcamentoView()
         {
             InitializeComponent();
 
@@ -70,8 +70,6 @@ namespace Dataplace.Imersao.Presentation.Views
             clsOffice.ExportTrueDbGridToExcel(gridOrcamento, xlsOption.xlsSaveAndOpen);
         }
 
-
-
         #endregion
 
         #region tool events
@@ -80,7 +78,7 @@ namespace Dataplace.Imersao.Presentation.Views
             // definições iniciais do projeto
             // item seguraça
             // engine code
-            this.Text = "Cancelamento de orçamento";
+            this.Text = "Cancelar orçamentos em aberto";
             e.SecurityIdList.Add(_itemSeg);
             e.CancelButtonVisisble = true;
         }

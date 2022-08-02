@@ -79,11 +79,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Orcamentos\Tools\CancelamentoOrcamentoView.cs">
+    <Compile Include="Views\Orcamentos\Tools\CancelarOrcamentoView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Orcamentos\Tools\CancelamentoOrcamentoView.Designer.cs">
-      <DependentUpon>CancelamentoOrcamentoView.cs</DependentUpon>
+    <Compile Include="Views\Orcamentos\Tools\CancelarOrcamentoView.Designer.cs">
+      <DependentUpon>CancelarOrcamentoView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Faturamento\Reports\TotalCondicaoPagamentoView.cs">
       <SubType>UserControl</SubType>
@@ -98,8 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="Views\Orcamentos\Tools\CancelamentoOrcamentoView.resx">
-      <DependentUpon>CancelamentoOrcamentoView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Orcamentos\Tools\CancelarOrcamentoView.resx">
+      <DependentUpon>CancelarOrcamentoView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Faturamento\Reports\TotalCondicaoPagamentoView.resx">
       <DependentUpon>TotalCondicaoPagamentoView.cs</DependentUpon>
