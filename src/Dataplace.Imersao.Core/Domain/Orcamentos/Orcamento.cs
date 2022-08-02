@@ -95,7 +95,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
 
             Validation = new Dataplace.Core.Domain.DomainValidation.FluentValidator.Validation.ValidationContract();
             Validation.Requires()
-                .IsTrue(this.Situacao == OrcamentoStatusEnum.Aberto, nameof(Situacao), "Somente orçamentos fechados podem ser reabertos");
+                .IsTrue(this.Situacao == OrcamentoStatusEnum.Fechado, nameof(Situacao), "Somente orçamentos fechados podem ser reabertos");
             if (!Validation.Valid)
                 return false;
 

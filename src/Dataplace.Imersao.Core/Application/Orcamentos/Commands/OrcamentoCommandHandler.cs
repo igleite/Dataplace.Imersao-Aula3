@@ -202,7 +202,12 @@ namespace Dataplace.Imersao.Core.Application.Orcamentos.Commands
                 return false;
             }
 
-            orcamento.FecharOrcamento();
+            if (!orcamento.FecharOrcamento())
+            {
+                orcamento.Validation.Notifications.ToList().ForEach(val => NotifyErrorValidation(val.Property, val.Message));
+                return false;
+            }
+
 
             if (!_orcamentoRepository.AtualizarOrcamento(orcamento))
                 NotifyErrorValidation("database", "Ocoreu um problema com a persistência dos dados");
@@ -231,7 +236,11 @@ namespace Dataplace.Imersao.Core.Application.Orcamentos.Commands
                 return false;
             }
 
-            orcamento.ReabrirOrcamento();
+            if (!orcamento.ReabrirOrcamento())
+            {
+                orcamento.Validation.Notifications.ToList().ForEach(val => NotifyErrorValidation(val.Property, val.Message));
+                return false;
+            }
 
 
             if (!_orcamentoRepository.AtualizarOrcamento(orcamento))
