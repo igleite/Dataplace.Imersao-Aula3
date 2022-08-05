@@ -24,7 +24,7 @@ using System.Windows.Forms;
 
 namespace Dataplace.Imersao.Presentation.Views
 {
-    public partial class CancelarOrcamentoView : dpLibrary05.Infrastructure.UserControls.ucSymGen_ToolDialog
+    public partial class FecharOrcamentoView : dpLibrary05.Infrastructure.UserControls.ucSymGen_ToolDialog
     {
         #region fields
         private DateTime _startDate;
@@ -34,7 +34,7 @@ namespace Dataplace.Imersao.Presentation.Views
         #endregion
 
         #region constructors
-        public CancelarOrcamentoView()
+        public FecharOrcamentoView()
         {
             InitializeComponent();
 
@@ -49,25 +49,14 @@ namespace Dataplace.Imersao.Presentation.Views
 
             this.tsiMarcar.Click += TsiMarcar_Click;
             this.tsiDesmarca.Click += TsiDesmarca_Click;
-            this.tsiExcel.Click += TsiExcel_Click;
 
             this.KeyDown += CancelamentoOrcamentoView_KeyDown;
-
-
-            this.chkAberto.Click += chk_Click;
-            this.chkFechado.Click += chk_Click;
-            this.chkCancelado.Click += chk_Click;
 
 
             _startDate = DateTime.Today;
             _endDate = _startDate.AddDays(1).AddSeconds(-1);
             rangeDate.Date1.Value = _startDate;
             rangeDate.Date2.Value = _endDate;
-        }
-
-        private void TsiExcel_Click(object sender, EventArgs e)
-        {
-            clsOffice.ExportTrueDbGridToExcel(gridOrcamento, xlsOption.xlsSaveAndOpen);
         }
 
         #endregion
@@ -78,7 +67,7 @@ namespace Dataplace.Imersao.Presentation.Views
             // definições iniciais do projeto
             // item seguraça
             // engine code
-            this.Text = "Cancelar orçamentos em aberto";
+            this.Text = "Fechar orçamentos em aberto";
             e.SecurityIdList.Add(_itemSeg);
             e.CancelButtonVisisble = true;
         }
@@ -217,12 +206,6 @@ namespace Dataplace.Imersao.Presentation.Views
         private OrcamentoQuery GetQuery()
         {
             var situacaoList = new List<Core.Domain.Orcamentos.Enums.OrcamentoStatusEnum>();
-            if (chkAberto.Checked)
-                situacaoList.Add(Core.Domain.Orcamentos.Enums.OrcamentoStatusEnum.Aberto);
-            if (chkFechado.Checked)
-                situacaoList.Add(Core.Domain.Orcamentos.Enums.OrcamentoStatusEnum.Fechado);
-            if (chkCancelado.Checked)
-                situacaoList.Add(Core.Domain.Orcamentos.Enums.OrcamentoStatusEnum.Cancelado);
 
             DateTime? dtInicio = null;
             DateTime? dtFim = null;

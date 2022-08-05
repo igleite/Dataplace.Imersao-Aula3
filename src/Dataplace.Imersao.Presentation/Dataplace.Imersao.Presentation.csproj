@@ -91,6 +91,12 @@
     <Compile Include="Views\Faturamento\Reports\TotalCondicaoPagamentoView.Designer.cs">
       <DependentUpon>TotalCondicaoPagamentoView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Orcamentos\Tools\FecharOrcamentoView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Orcamentos\Tools\FecharOrcamentoView.Designer.cs">
+      <DependentUpon>FecharOrcamentoView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -103,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Faturamento\Reports\TotalCondicaoPagamentoView.resx">
       <DependentUpon>TotalCondicaoPagamentoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Orcamentos\Tools\FecharOrcamentoView.resx">
+      <DependentUpon>FecharOrcamentoView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
